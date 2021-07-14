@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Set publish tag
         id: publishVars
-        run: echo ::set-output name=publishTag::${{ contains(GITHUB_REF#refs/*/, '-') && 'next' || 'latest' }}
+        run: echo ::set-output name=publishTag::${{ contains(${GITHUB_REF/refs\/tags\//}, '-') && 'next' || 'latest' }}
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v2
         with:
