@@ -10,11 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set output
+      - name: Set publish version
         id: vars
         run: |
           echo ::set-output name=publishVersion::${GITHUB_REF#refs/*/}
-          echo ::set-output name=publishTag::${{ contains(steps.vars.outputs.publishVersion, '-') ? 'next' : 'latest' }}
+      - name: Set publish tag 'next'
+        id: vars
+        run: echo ::set-output name=publishTag::next
+        if: ${{ contains(steps.vars.outputs.publishVersion, '-') }}
+      - name: Set publish tag 'latest'
+        id: vars
+        run: echo ::set-output name=publishTag::latest
+        if: ${{ !contains(steps.vars.outputs.publishVersion, '-') }}
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v2
         with:
