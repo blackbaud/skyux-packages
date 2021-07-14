@@ -35,5 +35,4 @@ jobs:
         run: npm publish --tag=${{ steps.vars.outputs.publishTag }} --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        with:
-          working-directory: dist
+        working-directory: dist
