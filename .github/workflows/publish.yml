@@ -1,0 +1,29 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set output
+        id: vars
+        run: |
+          echo ::set-output name=publishVersion::${GITHUB_REF#refs/*/}
+          echo ::set-output name=publishTag::${{ contains(steps.vars.outputs.publishVersion, '-') ? 'next' : 'latest' }}
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install
+        run: |
+          npm install
+      - name: Publish
+        run: npm publish --tag=${{ steps.vars.outputs.publishTag }} --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
