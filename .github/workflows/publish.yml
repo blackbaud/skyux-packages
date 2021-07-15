@@ -26,7 +26,7 @@ jobs:
           npm install
           npm run build
       - name: Publish
-        run: npm publish --tag=${{ steps.publishVars.outputs.TAG }}
+        run: npm publish --tag=${{ steps.publishVars.outputs.TAG }} --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         working-directory: dist
