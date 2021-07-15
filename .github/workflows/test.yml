@@ -20,4 +20,3 @@ jobs:
         run: |
           npm ci
           npm run build
-          bash <(curl -s https://codecov.io/bash)
