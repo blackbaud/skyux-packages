@@ -23,7 +23,7 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["**/src/**/*.ts", "**/src/**/*.json"],
+  "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": ["node_modules"],
   "compileOnSave": false,
   "buildOnSave": false
