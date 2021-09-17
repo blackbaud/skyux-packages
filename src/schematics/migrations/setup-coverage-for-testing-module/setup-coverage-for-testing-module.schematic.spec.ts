@@ -6,7 +6,6 @@ import {
 import path from 'path';
 
 import { createTestApp, createTestLibrary } from '../../testing/scaffold';
-import { JsonFile } from '../../utility/json-file';
 
 describe('Migrations > Setup specs for testing module', () => {
   const collectionPath = path.join(__dirname, '../migration-collection.json');
@@ -23,11 +22,6 @@ describe('Migrations > Setup specs for testing module', () => {
     });
   });
 
-  function createTestingModule(): void {
-    tree.create(`projects/${defaultProjectName}/testing/ng-package.json`, `{}`);
-    tree.create(`projects/${defaultProjectName}/testing/src/public-api.ts`, ``);
-  }
-
   function runSchematic(name?: string): Promise<UnitTestTree> {
     return runner
       .runSchematicAsync(
@@ -42,44 +36,17 @@ describe('Migrations > Setup specs for testing module', () => {
 
   function validateFiles() {
     const entryPointContents = tree.readContent(
-      `projects/${defaultProjectName}/testing/src/test.ts`
+      `projects/${defaultProjectName}/src/test.ts`
     );
     expect(entryPointContents)
       .toEqual(`const context = (require as any).context('./', true, /.spec.ts$/);
 context.keys().map(context);
 `);
-
-    const specTsConfig = new JsonFile(
-      tree,
-      `projects/${defaultProjectName}/tsconfig.spec.json`
-    );
-    expect(specTsConfig.get(['files'])).toEqual([
-      'src/test.ts',
-      'testing/src/test.ts',
-    ]);
-
-    const libTsConfig = new JsonFile(
-      tree,
-      `projects/${defaultProjectName}/tsconfig.lib.json`
-    );
-    expect(libTsConfig.get(['exclude'])).toEqual([
-      'src/test.ts',
-      '**/*.spec.ts',
-      'testing/src/test.ts',
-    ]);
   }
 
   it('should setup testing module for code coverage', async () => {
-    createTestingModule();
     await runSchematic();
     validateFiles();
-  });
-
-  it('should abort if testing module not found', async () => {
-    const updatedTree = await runSchematic();
-    expect(
-      updatedTree.exists(`projects/${defaultProjectName}/testing/src/test.ts`)
-    ).toEqual(false);
   });
 
   it('should abort if project type is application', async () => {
@@ -95,7 +62,6 @@ context.keys().map(context);
   });
 
   it('should abort if testing module already setup', async () => {
-    createTestingModule();
     await runSchematic();
     validateFiles();
     // Run the schematic again.
