@@ -12,6 +12,12 @@ describe('Migrations > Setup specs for testing module', () => {
   const defaultProjectName = 'my-lib';
   const schematicName = 'setup-coverage-for-testing-module';
 
+  const testingModuleContext = `// Find any tests included in the "testing" entry point.
+try {
+  const testingContext = require.context('../testing/', true, /\\.spec\\.ts$/);
+  testingContext.keys().map(testingContext);
+} catch (err) {}`;
+
   const runner = new SchematicTestRunner('migrations', collectionPath);
 
   let tree: UnitTestTree;
@@ -39,12 +45,48 @@ describe('Migrations > Setup specs for testing module', () => {
       `projects/${defaultProjectName}/src/test.ts`
     );
     expect(entryPointContents)
-      .toEqual(`const context = (require as any).context('./', true, /.spec.ts$/);
+      .toEqual(`// This file is required by karma.conf.js and loads recursively all the .spec and framework files
+
+import 'zone.js';
+import 'zone.js/testing';
+import { getTestBed } from '@angular/core/testing';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting
+} from '@angular/platform-browser-dynamic/testing';
+
+declare const require: {
+  context(path: string, deep?: boolean, filter?: RegExp): {
+    keys(): string[];
+    <T>(id: string): T;
+  };
+};
+
+// First, initialize the Angular testing environment.
+getTestBed().initTestEnvironment(
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting(),
+  { teardown: { destroyAfterEach: true }},
+);
+
+// Then we find all the tests.
+const context = require.context('./', true, /\\.spec\\.ts$/);
+// And load the modules.
 context.keys().map(context);
+
+${testingModuleContext}
 `);
   }
 
   it('should setup testing module for code coverage', async () => {
+    await runSchematic();
+    validateFiles();
+  });
+
+  it('should abort if testing module already setup', async () => {
+    await runSchematic();
+    validateFiles();
+    // Run the schematic again.
     await runSchematic();
     validateFiles();
   });
@@ -56,16 +98,7 @@ context.keys().map(context);
 
     const updatedTree = await runSchematic('my-app');
 
-    expect(updatedTree.exists('projects/my-app/testing/src/test.ts')).toEqual(
-      false
-    );
-  });
-
-  it('should abort if testing module already setup', async () => {
-    await runSchematic();
-    validateFiles();
-    // Run the schematic again.
-    await runSchematic();
-    validateFiles();
+    const contents = updatedTree.readContent('/src/test.ts');
+    expect(contents).not.toContain(testingModuleContext);
   });
 });

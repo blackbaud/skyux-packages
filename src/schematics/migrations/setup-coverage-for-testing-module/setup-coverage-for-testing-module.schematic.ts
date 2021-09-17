@@ -8,9 +8,10 @@ function updateSpecsEntryPoint(projectName: string): Rule {
     const filePath = `projects/${projectName}/src/test.ts`;
     let contents = readRequiredFile(tree, filePath);
     if (!contents.includes('const testingContext')) {
-      contents += `// Find any tests included in the "testing" entry point.
+      contents += `
+// Find any tests included in the "testing" entry point.
 try {
-  const testingContext = require.context('../testing/', true, /\.spec\.ts$/);
+  const testingContext = require.context('../testing/', true, /\\.spec\\.ts$/);
   testingContext.keys().map(testingContext);
 } catch (err) {}
 `;
