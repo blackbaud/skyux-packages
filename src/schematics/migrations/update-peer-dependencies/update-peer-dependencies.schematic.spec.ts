@@ -34,7 +34,7 @@ describe('Migrations > Update peer dependencies', () => {
       .toPromise();
   }
 
-  it('should setup testing module for code coverage', async () => {
+  it('should update library peer dependencies', async () => {
     tree.overwrite(
       'projects/my-lib/package.json',
       `{
@@ -70,5 +70,35 @@ describe('Migrations > Update peer dependencies', () => {
     );
     expect(libraryPackageJson.dependencies.moment).toEqual('1.2.3');
     expect(libraryPackageJson.dependencies.tslib).toEqual('^2.5.0');
+  });
+
+  it('should skip dependencies if they are not specific versions', async () => {
+    tree.overwrite(
+      'projects/my-lib/package.json',
+      `{
+  "peerDependencies": {
+    "@angular/core": "^12.0.0"
+  }
+}`
+    );
+
+    tree.overwrite(
+      'package.json',
+      `{
+  "dependencies": {
+    "@angular/core": "~12.2.5"
+  }
+}`
+    );
+
+    const updatedTree = await runSchematic();
+
+    const libraryPackageJson = JSON.parse(
+      updatedTree.readContent('projects/my-lib/package.json')
+    );
+
+    expect(libraryPackageJson.peerDependencies['@angular/core']).toEqual(
+      '^12.0.0' // <-- Should be unchanged since it was skipped.
+    );
   });
 });
