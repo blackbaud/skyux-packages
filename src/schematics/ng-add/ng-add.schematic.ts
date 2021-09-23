@@ -1,9 +1,5 @@
 import { Rule, SchematicContext } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import {
-  addPackageJsonDependency,
-  NodeDependencyType,
-} from '@schematics/angular/utility/dependencies';
 
 import getLatestVersion from 'latest-version';
 import semver from 'semver';
@@ -58,13 +54,6 @@ async function ensureLatestVersions(
 
 export default function ngAdd(): Rule {
   return async (tree, context) => {
-    addPackageJsonDependency(tree, {
-      type: NodeDependencyType.Default,
-      name: '@skyux/packages',
-      version: '^5.0.0-beta.0',
-      overwrite: true,
-    });
-
     const packageJsonPath = 'package.json';
     const packageJson = JSON.parse(readRequiredFile(tree, packageJsonPath));
 

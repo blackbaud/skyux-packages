@@ -39,6 +39,7 @@ describe('ng-add.schematic', () => {
   it('should get latest versions of packages', async () => {
     // Add custom packages for the test.
     let packageJson = JSON.parse(tree.readContent('package.json'));
+    packageJson.dependencies['@skyux/core'] = '^5.0.1';
     packageJson.dependencies['@skyux/already-latest'] = '5.4.1';
     packageJson.dependencies['@skyux/invalid'] = 'invalid'; // Invalid versions should be skipped.
     tree.overwrite('package.json', JSON.stringify(packageJson));
@@ -58,7 +59,7 @@ describe('ng-add.schematic', () => {
       '@angular/router': 'LATEST',
       '@skyux/already-latest': '5.4.1',
       '@skyux/invalid': 'invalid',
-      '@skyux/packages': 'LATEST',
+      '@skyux/core': 'LATEST',
       rxjs: '~6.6.0',
       tslib: 'LATEST',
       'zone.js': '~0.11.4',
