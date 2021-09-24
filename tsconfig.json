@@ -21,7 +21,7 @@
     "strictNullChecks": true,
     "typeRoots": ["node_modules/@types"],
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "."
   },
   "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": ["node_modules"],

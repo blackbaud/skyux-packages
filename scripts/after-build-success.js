@@ -2,7 +2,12 @@ const fs = require('fs-extra');
 const path = require('path');
 
 function copyFilesToDist() {
-  const pathsToCopy = [['README.md'], ['CHANGELOG.md'], ['package.json']];
+  const pathsToCopy = [
+    ['README.md'],
+    ['CHANGELOG.md'],
+    ['package.json'],
+    ['collection.json'],
+  ];
 
   pathsToCopy.forEach((pathArr) => {
     const sourcePath = path.join(...pathArr);
