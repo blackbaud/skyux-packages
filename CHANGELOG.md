@@ -1,3 +1,15 @@
+# 5.0.0-beta.142 (2021-09-30)
+
+- `@skyux/animations@5.0.0` [Release notes](https://github.com/blackbaud/skyux-animations/blob/5.0.0/CHANGELOG.md)
+
+# 5.0.0-beta.141 (2021-09-30)
+
+- `@skyux/errors@5.0.0` [Release notes](https://github.com/blackbaud/skyux-errors/blob/5.0.0/CHANGELOG.md)
+
+# 5.0.0-beta.140 (2021-09-30)
+
+- `@skyux/core@5.0.0-beta.12` [Release notes](https://github.com/blackbaud/skyux-core/blob/5.0.0-beta.12/CHANGELOG.md)
+
 # 5.0.0-beta.139 (2021-09-29)
 
 - `@skyux/http@5.0.0` [Release notes](https://github.com/blackbaud/skyux-http/blob/5.0.0/CHANGELOG.md)
