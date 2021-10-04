@@ -1,3 +1,7 @@
+# 5.0.1 (2021-10-01)
+
+- Removed the pre-release `ng update` schematics. []()
+
 # 5.0.0 (2021-10-01)
 
 - Initial `5.0.0` release.
