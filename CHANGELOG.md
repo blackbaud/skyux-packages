@@ -1,6 +1,6 @@
 # 5.0.1 (2021-10-01)
 
-- Removed the pre-release `ng update` schematics. []()
+- Removed the pre-release `ng update` schematics. [#15](https://github.com/blackbaud/skyux-packages/pull/15)
 
 # 5.0.0 (2021-10-01)
 
