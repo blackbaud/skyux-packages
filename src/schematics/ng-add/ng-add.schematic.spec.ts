@@ -95,4 +95,35 @@ describe('ng-add.schematic', () => {
       })
     );
   });
+
+  it('should update library peer dependencies', async () => {
+    tree = await createTestLibrary(runner, { name: 'my-lib' });
+
+    // Update library package.json.
+    const libraryPackageJsonPath = 'projects/my-lib/package.json';
+    let libraryPackageJson = JSON.parse(
+      tree.readContent(libraryPackageJsonPath)
+    );
+    libraryPackageJson.peerDependencies['@skyux/core'] = '^4.0.1';
+    tree.overwrite(libraryPackageJsonPath, JSON.stringify(libraryPackageJson));
+
+    // Update workspace package.json.
+    const packageJson = JSON.parse(tree.readContent('package.json'));
+    packageJson.dependencies['@skyux/core'] = '5.0.0';
+    tree.overwrite('package.json', JSON.stringify(packageJson));
+
+    const updatedTree = await runSchematic({
+      project: 'my-lib',
+    });
+
+    libraryPackageJson = JSON.parse(
+      updatedTree.readContent(libraryPackageJsonPath)
+    );
+
+    expect(libraryPackageJson.peerDependencies).toEqual({
+      '@angular/common': '^12.2.0',
+      '@angular/core': '^12.2.0',
+      '@skyux/core': '^LATEST',
+    });
+  });
 });
