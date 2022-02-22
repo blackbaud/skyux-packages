@@ -21,7 +21,7 @@
       "description": "Remove SKY UX scripts from package.json"
     },
     "add-cdk": {
-      "version": "5.128.0",
+      "version": "5.144.0",
       "factory": "./add-cdk/add-cdk.schematic",
       "description": "Add Angular CDK"
     }
