@@ -1,3 +1,71 @@
+# 5.143.0 (2022-02-22)
+
+- `@skyux/datetime@5.1.4` [Release notes](https://github.com/blackbaud/skyux-datetime/blob/5.1.4/CHANGELOG.md)
+
+# 5.142.0 (2022-02-18)
+
+- `@skyux/docs-tools@5.0.0-beta.12` [Release notes](https://github.com/blackbaud/skyux-docs-tools/blob/5.0.0-beta.12/CHANGELOG.md)
+
+# 5.141.0 (2022-02-15)
+
+- `@skyux/modals@5.0.5` [Release notes](https://github.com/blackbaud/skyux-modals/blob/5.0.5/CHANGELOG.md)
+
+# 5.140.0 (2022-02-14)
+
+- `@skyux/docs-tools@5.0.0-beta.11` [Release notes](https://github.com/blackbaud/skyux-docs-tools/blob/5.0.0-beta.11/CHANGELOG.md)
+
+# 5.139.0 (2022-02-14)
+
+- `@skyux/datetime@5.1.3` [Release notes](https://github.com/blackbaud/skyux-datetime/blob/5.1.3/CHANGELOG.md)
+
+# 5.138.0 (2022-02-09)
+
+- `@skyux/indicators@5.3.0` [Release notes](https://github.com/blackbaud/skyux-indicators/blob/5.3.0/CHANGELOG.md)
+
+# 5.137.1 (2022-02-08)
+
+- `@skyux/i18n@5.0.2` [Release notes](https://github.com/blackbaud/skyux-i18n/blob/5.0.2/CHANGELOG.md)
+
+# 5.137.0 (2022-02-08)
+
+- `@skyux/list-builder-common@5.0.2` [Release notes](https://github.com/blackbaud/skyux-list-builder-common/blob/5.0.2/CHANGELOG.md)
+
+# 5.136.0 (2022-02-08)
+
+- `@skyux/docs-tools@5.0.0-beta.10` [Release notes](https://github.com/blackbaud/skyux-docs-tools/blob/5.0.0-beta.10/CHANGELOG.md)
+
+# 5.135.0 (2022-02-07)
+
+- `@skyux/ag-grid@5.2.1` [Release notes](https://github.com/blackbaud/skyux-ag-grid/blob/5.2.1/CHANGELOG.md)
+
+# 5.134.0 (2022-02-07)
+
+- `@skyux/action-bars@5.0.2` [Release notes](https://github.com/blackbaud/skyux-action-bars/blob/5.0.2/CHANGELOG.md)
+
+# 5.133.0 (2022-02-04)
+
+- `@skyux/flyout@5.0.4` [Release notes](https://github.com/blackbaud/skyux-flyout/blob/5.0.4/CHANGELOG.md)
+
+# 5.132.0 (2022-02-04)
+
+- `@skyux/modals@5.0.4` [Release notes](https://github.com/blackbaud/skyux-modals/blob/5.0.4/CHANGELOG.md)
+
+# 5.131.0 (2022-02-04)
+
+- `@skyux/tiles@5.0.3` [Release notes](https://github.com/blackbaud/skyux-tiles/blob/5.0.3/CHANGELOG.md)
+
+# 5.130.0 (2022-02-04)
+
+- `@skyux/lookup@5.2.1` [Release notes](https://github.com/blackbaud/skyux-lookup/blob/5.2.1/CHANGELOG.md)
+
+# 5.129.0 (2022-02-03)
+
+- `@skyux/core@5.2.3` [Release notes](https://github.com/blackbaud/skyux-core/blob/5.2.3/CHANGELOG.md)
+
+# 5.128.0 (2022-02-03)
+
+- `@skyux-sdk/testing@5.2.0` [Release notes](https://github.com/blackbaud/skyux-sdk-testing/blob/5.2.0/CHANGELOG.md)
+
 # 5.127.0 (2022-02-03)
 
 - `@skyux/lists@5.1.0` [Release notes](https://github.com/blackbaud/skyux-lists/blob/5.1.0/CHANGELOG.md)
