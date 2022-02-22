@@ -10,7 +10,7 @@ import { readRequiredFile } from '../../utility/tree';
 export default function (): Rule {
   return async (tree, context) => {
     const filePath = 'package.json';
-    const relevantPackages = ['@skyux/lists', '@skyux/flyout'];
+    const relevantPackages = ['@skyux/flyout'];
     const packageJson = JSON.parse(readRequiredFile(tree, filePath));
     let packageFound = false;
 
